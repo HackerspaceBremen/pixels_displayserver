@@ -35,7 +35,7 @@ var server = net.createServer(function(c) {
   }
 
   function handle_message_info(message) {
-    c.write('info-geometry: 0,0' + NEWLINE);
+    c.write('info-geometry: 90,20' + NEWLINE);
     c.write(NEWLINE);
   }
 
@@ -72,9 +72,7 @@ var server = net.createServer(function(c) {
 
   session_id++;
 
-  c.write('connect: ok'+NEWLINE);
-  c.write('session-id: ' + session_id + NEWLINE);
-  c.write(NEWLINE);
+  c.write('connect: ok' + NEWLINE + 'session-id: ' + session_id + NEWLINE + NEWLINE);
 
   console.log('connected: ' + session_id);
 });
