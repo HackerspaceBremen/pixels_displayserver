@@ -1,0 +1,22 @@
+{
+  "name": "pixels_displayserver",
+  "version": "0.0.1",
+  "description": "A simple display server for LED pixels.",
+  "author": {
+    "name": "Michael Kötter",
+    "email": "michael@m-koetter.de"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/HackerspaceBremen/pixels_displayserver.git"
+  },
+  "maintainers": [
+    {
+      "name": "Michael Kötter",
+      "email": "michael@m-koetter.de"
+    }
+  ],
+  "dependencies": {
+    "serialport": "1.7.1"
+  }
+}
