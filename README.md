@@ -12,8 +12,8 @@ Clients access the display server using a network socket. A simple protocol is u
 
 ### Message format
 
-A message sent to the display server consists of one or more headers and a payload, terminated by an empty newline.
-Binary payloads are base64 encoded.
+A message sent to the display server consists of one or more properties, terminated by an empty newline.
+Binary payloads can be sent using a base64 encoded properties.
 
 ### Connect
 
@@ -39,7 +39,7 @@ Use this to query various parameters of the connected LED display.
 
 Request:
 
-    info:\n
+    info: ?\n
     \n
 
 Response:
@@ -55,7 +55,7 @@ Blits pixels to an area of the display.
 Request:
 
     blit: <x>,<y>,<width>,<height>\n
-    <rgb data, base64>\n
+    data: <rgb data, base64>\n
     \n
 
 Response:
