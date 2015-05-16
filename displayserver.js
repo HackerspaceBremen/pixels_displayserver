@@ -29,7 +29,7 @@ serialPort.on('open', function() {
     var remaining = '';
 
     function handle_line(line) {
-      console.log(session_id + '> l ' + line);
+      // console.log(my_session_id + '> l ' + line);
       index = line.indexOf(COLON);
 
       if (index > -1) {
@@ -43,7 +43,7 @@ serialPort.on('open', function() {
     }
 
     function handle_message(message) {
-      console.log(session_id + '> m', message);
+      // console.log(my_session_id + '> m', message);
       if (message['info']) {
         handle_message_info(message);
       } else if (message['blit']) {
@@ -60,7 +60,7 @@ serialPort.on('open', function() {
       // unpack data
       var data = Buffer.concat([new Buffer('*'), new Buffer(message['data'], 'base64')]);
 
-      console.log('DATA: ', data.toString('hex'));
+      // console.log('DATA: ', data.toString('hex'));
 
       serialPort.write(data);
       serialPort.drain(function() {
@@ -70,7 +70,7 @@ serialPort.on('open', function() {
     }
 
     c.on('data', function(data) {
-      console.log(session_id + '> b ' + data.length);
+      // console.log(my_session_id + '> b ' + data.length);
 
       // parse the received data
       remaining += data;
@@ -92,14 +92,19 @@ serialPort.on('open', function() {
     });
 
     c.on('close', function() {
-      console.log('disconnected: ' + session_id);
+      console.log(my_session_id + '> disconnected');
     });
 
+    c.on('error', function(error) {
+      console.log(my_session_id + '> socket error:' + error);
+    })
+
     session_id++;
+    var my_session_id = session_id;
 
-    c.write('connect: ok' + NEWLINE + 'session-id: ' + session_id + NEWLINE + NEWLINE);
+    c.write('connect: ok' + NEWLINE + 'session-id: ' + my_session_id + NEWLINE + NEWLINE);
 
-    console.log('connected: ' + session_id);
+    console.log(my_session_id + '> connected');
   });
 
 
